@@ -15,15 +15,26 @@ const MessageStyled = styled.div`
 const MessageWrapperStyled = styled.div`
   display: flex;
   justify-content: ${(props)=> props.owner ? 'flex-end' : 'flex-start'};
+  position: relative;
+  span{
+    background-color: black;
+    color: white;
+    padding: 0.5em 1em;
+    position: absolute;
+    left: 0em;
+    bottom: 0em;
+    font-size: 0.5em;
+  }
 `;
 
 const Message = (props) => {
   const {owner} = props;
-  const {message} = props.message;
+  const {message, username} = props.message;
   return <MessageWrapperStyled owner={owner}>
     <MessageStyled owner={owner}>
       {message}
     </MessageStyled>
+    {!owner && <span>{username}</span>}
   </MessageWrapperStyled>
 }
 
